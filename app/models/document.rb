@@ -1,4 +1,5 @@
 class Document < ApplicationRecord
+  belongs_to :documentable, polymorphic: true
   belongs_to :aircraft
   belongs_to :operator
   DATA_TABLE = [
@@ -8,7 +9,7 @@ class Document < ApplicationRecord
     { id: 4, path: '/uploads/template_4.pdf', documentable_type: 'Aircraft', documentable_id: 4 }
   ].freeze
 
-	def all_documents
+	def self.all_documents
 		Document.all
 	end
 
@@ -17,10 +18,6 @@ class Document < ApplicationRecord
 	end	
 
   	def owner
-  		if self.aircraft
-			self.aircraft
-        	elsif self.operator
-			self.operator
-		end
+  		self.documentable
   	end
 end

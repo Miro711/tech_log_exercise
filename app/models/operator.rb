@@ -1,5 +1,5 @@
 class Operator < ApplicationRecord
-  has_one :document, dependent: :destroy
+  has_one :document, as: :documentable, dependent: :destroy
   has_many :aircrafts, dependent: :destroy
 
   # Add validation to ensure the presence of associated document

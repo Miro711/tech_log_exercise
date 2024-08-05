@@ -1,5 +1,5 @@
 class Aircraft < ApplicationRecord
-	has_one :document, optional: true
+	has_one :document, as: :documentable, optional: true
         belongs_to :operator
   DATA_TABLE = [
     { id: 1, registration: 'G-FWED', operator_id: 1 },
@@ -9,7 +9,7 @@ class Aircraft < ApplicationRecord
     { id: 5, registration: 'T-DCXX', operator_id: 3 }
   ].freeze
 
-	def all_aircrafts
+	def self.all_aircrafts
 		Aircraft.all
 	end
 
