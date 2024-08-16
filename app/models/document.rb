@@ -9,11 +9,11 @@ class Document < ApplicationRecord
     { id: 4, path: '/uploads/template_4.pdf', documentable_type: 'Aircraft', documentable_id: 4 }
   ].freeze
 
-	def self.all_documents
+	def self.all_records
 		Document.all
 	end
 
-	def self.find_document_by_id(id)
+	def self.find_by_id(id)
 		Document.find(id)
 	end	
 

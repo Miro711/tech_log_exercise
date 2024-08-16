@@ -9,11 +9,11 @@ class Aircraft < ApplicationRecord
     { id: 5, registration: 'T-DCXX', operator_id: 3 }
   ].freeze
 
-	def self.all_aircrafts
+	def self.all_records
 		Aircraft.all
 	end
 
-	def self.find_aircraft_by_id(id)
+	def self.find_by_id(id)
 		Aircraft.find(id)
 	end	
 
@@ -21,13 +21,9 @@ class Aircraft < ApplicationRecord
 		self.operator
 	end
 
-	def fetch_document(aircraft_id)
-		aircraft = Aircraft.find_aircraft_by_id(aircraft_id)
+	def self.fetch_document(aircraft_id)
+		aircraft = Aircraft.find_by_id(aircraft_id)
 		operator = aircraft.fetch_operator
-                if aircraft.document
-			aircraft.document
-		else
-			operator.document
-		end
+                aircraft.document || operator.document
 	end
 end

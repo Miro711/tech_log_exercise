@@ -10,7 +10,15 @@ class Operator < ApplicationRecord
     { id: 2, name: 'Operator 2' },
     { id: 3, name: 'Operator 3' }
   ].freeze
-  def fetch_aircrafts
+  def self.all_records
+  	Operator.all
+  end
+
+  def self.find_by_id(id)
+  	Operator.find(id)
+  end
+  
+  def all_aircrafts
   	self.aircrafts
   end
 end
